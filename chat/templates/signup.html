@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}sign up{% endblock %}
+
+{% block content %}
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="tab-content bg-light p-4" style="border-radius: 1rem;">
+          <div class="tab-pane fade show active">
+            <h3 class="d-flex justify-content-center mb-4">Регистрация</h3>
+            <form method="post" action=".">
+              {% csrf_token %}
+              <div class="form-outline mb-4">
+                <input type="text" name="username" id="registerUsername" class="form-control" placeholder="имя пользователя"/>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="password" name="password1" id="registerPassword" class="form-control" placeholder="пароль"/>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="password" name="password2" id="registerRepeatPassword" class="form-control" placeholder="повтор пароля"/>
+              </div>
+
+              <button class="btn btn-primary btn-block mb-3">Регистрация</button>
+              <a href="{% url 'mainpage' %}" class="btn btn-warning btn-block mb-3">Вернуться</a>
+
+              {% if form.errors %}
+              {% for f in form %}
+                  {% for e in f.errors %}
+                      <div>
+                          <p>{{ e|escape }}</p>
+                      </div>
+                  {% endfor %}
+              {% endfor %}
+              {% endif %}
+            </form>
+          </div>
+        </div>
+      </div>
+{% endblock %}

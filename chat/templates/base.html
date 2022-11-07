@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        {% load static %}
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="{% static 'images/nyan_cat_0.gif' %}" sizes="32x32"/>
+
+        <title>{% block title %}yummy chat{% endblock %}</title>
+    </head>
+    <body>
+        <div class="container-fluid">
+          {% block content %}
+            <div class="row d-flex justify-content-center align-items-center">
+              <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+              <div class="tab-content bg-light p-4" style="border-radius: 1rem;">
+                <div class="tab-pane fade show active">
+                  {% if request.user.is_authenticated %}
+                  <div class="d-flex justify-content-end">
+                    <a href="{% url 'logout' %}" class="btn btn-warning btn-block px-5 mb-4">выйти</a>
+                  </div>
+                  <h3 class="d-flex justify-content-center mb-4">Выберите / создайте чат</h3>
+                    {% for room in rooms %}
+                      <a href="{% url 'room' room.slug %}" class="btn btn-dark mb-4 px-5">{{ room.name }}</a>
+                    {% endfor %}
+                  <form method="post" action=".">
+                    {% csrf_token %}
+                    <div class="d-flex form-outline justify-content-center mb-2">
+                      <input type="text" class="form-control mb-4" placeholder="Название комнаты"/>
+                      <button class="btn btn-primary btn-block justify-content-center px-5 mb-4">создать</button>
+                    </div>
+                  </form>
+                  {% else %}
+                  <h3 class="d-flex justify-content-center mb-4">Авторизация</h3>
+                  <form method="post" action=".">
+                    {% csrf_token %}
+                    <div class="form-outline mb-4">
+                      <input type="text" name="username" id="loginName" class="form-control" placeholder="логин"/>
+                    </div>
+                    <div class="form-outline mb-4">
+                      <input type="password" name="password" id="loginPassword" class="form-control" placeholder="пароль"/>
+                    </div>
+                    <button class="btn btn-primary btn-block px-5 mb-4">Войти</button>
+                    <div class="text-center">
+                      <p>Новый пользователь? <a href="{% url 'signup' %}">Регистрация</a></p>
+                    </div>
+
+                    {% if form.errors %}
+                      {% for f in form %}
+                        {% for e in f.errors %}
+                          <div>
+                              <p>{{ e|escape }}</p>
+                          </div>
+                        {% endfor %}
+                      {% endfor %}
+                    {% endif %}
+                  </form>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            {% endblock %}
+
+            {% block scripts %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
