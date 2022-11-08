@@ -5,10 +5,6 @@ from .forms import SignUpForm, RoomCreationForm
 from .models import Room, Message
 
 
-# def main_page(request):
-#     return render(request, 'base.html')
-
-
 def sign_up(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)

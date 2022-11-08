@@ -8,6 +8,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" href="{% static 'images/nyan_cat_0.gif' %}" sizes="32x32"/>
+        <style>
+          .messages {
+              height: 400px;
+              overflow-y: auto;
+          }
+        </style>
 
         <title>{% block title %}yummy chat{% endblock %}</title>
     </head>
