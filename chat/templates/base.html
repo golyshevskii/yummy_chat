@@ -29,7 +29,7 @@
                   <form method="post" action=".">
                     {% csrf_token %}
                     <div class="d-flex form-outline justify-content-center mb-2">
-                      <input type="text" class="form-control mb-4" placeholder="Название комнаты"/>
+                      <input type="text" name="name" class="form-control mb-4" placeholder="Название комнаты"/>
                       <button class="btn btn-primary btn-block justify-content-center px-5 mb-4">создать</button>
                     </div>
                   </form>
