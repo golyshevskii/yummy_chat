@@ -8,29 +8,9 @@
   <div class="tab-content bg-light p-4" style="border-radius: 1rem;">
     <div class="tab-pane fade show active">
       <div class="d-flex justify-content-end">
-        <a href="{% url 'rooms' %}" class="btn btn-warning btn-block px-2 mb-4">Вернуться</a>
+        <a href="{% url 'rooms' %}" class="btn btn-warning btn-block px-2 mb-1">Вернуться</a>
       </div>
       <h3 class="d-flex justify-content-center mb-4">{{ room.name }}</h3>
-      <!-- <div class="d-block p-2 bg-dark mb-4" id="chat-messages" style="max-height: 350px; overflow-y: scroll; border-radius: 1rem;">
-        {% for m in messages %}
-          {% if request.user.username == m.user.username %}
-          <div class="d-flex justify-content-end mb-1" style="border-radius: 0.5rem;">
-            <div class="d-block p-2 bg-light mb-1" id="new-message" style="border-radius: 0.5rem;">
-              <b>{{ m.user.username }}</b><br>{{ m.content }}
-            </div>
-            <p class="text-muted mb-0">{{ m.date_added }}</p>
-          </div>
-          {% else %}
-          <div class="d-flex justify-content-start mb-1">
-            <div class="d-block p-2 bg-light mb-1" id="new-message" style="border-radius: 0.5rem;">
-              <b>{{ m.user.username }}</b><br>{{ m.content }}
-            </div>
-            <p class="text-muted mb-0">{{ m.date_added }}</p>
-          </div>
-          {% endif %}
-        {% endfor %}
-      </div> -->
-
       <div class="d-block border border-3 border-warning p-3 bg-dark mb-4" id="chat-messages" style="max-height: 350px; overflow-y: scroll; border-radius: 1rem;">
           {% for m in messages %}
             {% if request.user.username == m.user.username %}
@@ -44,12 +24,7 @@
               <div class="d-flex justify-content-start mb-1" style="border-radius: 0.5rem;">
                 <div class="d-block p-2 bg-light mb-1" style="border-radius: 0.5rem;">
                   <b>{{ m.user.username }}</b><br>{{ m.content }}
-                  <!-- {% if status == True %}
-                    <img src="{% static 'images/dve_blue_galochki.png' %}" width="16" height="16">
-                  {% else %}
-                    <img src="{% static 'images/dve_serye_galochki.png' %}" width="16" height="16">
-                  {% endif %} -->
-                  <p class="text-muted mb-0" style="font-size: 11px;">{{ m.date_added }} <img src="{% static 'images/dve_serye_galochki.png' %}" width="15" height="10"></p>
+                  <p class="text-muted mb-0" style="font-size: 11px;">{{ m.date_added }}</p>
                 </div>
               </div>
             {% endif %}
@@ -57,9 +32,10 @@
       </div>
 
       <form method="post" action=".">
-          <div class="d-flex form-outline justify-content-center mb-2">
-            <input type="text" name="content" class="form-control mb-4" placeholder="Ваше сообщение..." id="chat-message-input"/>
-            <button class="btn btn-dark btn-block justify-content-center px-4 mb-4" id="chat-message-submit">Отправить</button>
+        <!-- class="d-flex form-outline justify-content-center mb-2" -->
+          <div class="input-group">
+            <input type="text" name="content" class="form-control" placeholder="Ваше сообщение..." id="chat-message-input" style="border-color: black;"/>
+            <button class="btn btn-dark btn-block justify-content-center px-4" id="chat-message-submit">Отправить</button>
           </div>
       </form>
     </div>
