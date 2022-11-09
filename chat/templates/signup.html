@@ -10,20 +10,20 @@
             <h3 class="d-flex justify-content-center mb-4">Регистрация</h3>
             <form method="post" action=".">
               {% csrf_token %}
-              <div class="form-outline mb-4">
+              <div class="form-outline mb-3">
                 <input type="text" name="username" id="registerUsername" class="form-control" placeholder="имя пользователя"/>
               </div>
 
-              <div class="form-outline mb-4">
+              <div class="form-outline mb-1">
                 <input type="password" name="password1" id="registerPassword" class="form-control" placeholder="пароль"/>
               </div>
 
-              <div class="form-outline mb-4">
+              <div class="form-outline mb-3">
                 <input type="password" name="password2" id="registerRepeatPassword" class="form-control" placeholder="повтор пароля"/>
               </div>
 
-              <button class="btn btn-primary btn-block mb-3">Регистрация</button>
-              <a href="{% url 'login' %}" class="btn btn-warning btn-block mb-3">Вернуться</a>
+              <button class="btn btn-primary btn-block mb-2">Регистрация</button>
+              <a href="{% url 'login' %}" class="btn btn-warning btn-block mb-2">Вернуться</a>
 
               {% if form.errors %}
               {% for f in form %}
