@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from .forms import SignUpForm, RoomCreationForm
-from .models import Room, Message
+from .models import Room, Message, MessageStatus
 
 
 def sign_up(request):
@@ -35,7 +36,9 @@ def rooms(request):
 
 @login_required
 def room(request, slug):
+    # user = request.user.id
+
     room = Room.objects.get(slug=slug)
-    messages = Message.objects.filter(room=room)[0:100]
+    messages = Message.objects.filter(room=room)
 
     return render(request, 'room.html', {'room': room, 'messages': messages})

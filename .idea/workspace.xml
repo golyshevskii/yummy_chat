@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2b2dbf8f-3b1f-428e-9a74-878ef9382181" name="Changes" comment="" />
+    <list default="true" id="2b2dbf8f-3b1f-428e-9a74-878ef9382181" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/chat/migrations/0003_messagestatus.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat/migrations/0004_message_read.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat/migrations/0005_remove_message_read.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat/migrations/0006_rename_n_content_messagestatus_content_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat/static/images/dve_blue_galochki.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat/static/images/dve_serye_galochki.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/templates/room.html" beforeDir="false" afterPath="$PROJECT_DIR$/chat/templates/room.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,13 +26,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/python_poseur/yummy_chat"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/python_poseur/yummy_chat&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

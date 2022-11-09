@@ -31,9 +31,28 @@
         {% endfor %}
       </div> -->
 
-      <div class="d-block border border-warning p-2 bg-dark mb-4" id="chat-messages" style="max-height: 350px; overflow-y: scroll; border-radius: 1rem;">
+      <div class="d-block border border-3 border-warning p-3 bg-dark mb-4" id="chat-messages" style="max-height: 350px; overflow-y: scroll; border-radius: 1rem;">
           {% for m in messages %}
-            <div class="d-block p-2 bg-light mb-1" style="border-radius: 0.5rem;"><b>{{ m.user.username }}</b><br>{{ m.content }}<p class="text-muted mb-0">{{ m.date_added }}</p></div>
+            {% if request.user.username == m.user.username %}
+              <div class="d-flex justify-content-end mb-1" style="border-radius: 0.5rem;">
+                <div class="d-block p-2 bg-light mb-1" style="border-radius: 0.5rem;">
+                  <b>{{ m.user.username }}</b><br>{{ m.content }} 
+                  <p class="text-muted mb-0" style="font-size: 11px;">{{ m.date_added }} <img src="{% static 'images/dve_serye_galochki.png' %}" width="15" height="10"></p>
+                </div>
+              </div>
+            {% else %}
+              <div class="d-flex justify-content-start mb-1" style="border-radius: 0.5rem;">
+                <div class="d-block p-2 bg-light mb-1" style="border-radius: 0.5rem;">
+                  <b>{{ m.user.username }}</b><br>{{ m.content }}
+                  <!-- {% if status == True %}
+                    <img src="{% static 'images/dve_blue_galochki.png' %}" width="16" height="16">
+                  {% else %}
+                    <img src="{% static 'images/dve_serye_galochki.png' %}" width="16" height="16">
+                  {% endif %} -->
+                  <p class="text-muted mb-0" style="font-size: 11px;">{{ m.date_added }} <img src="{% static 'images/dve_serye_galochki.png' %}" width="15" height="10"></p>
+                </div>
+              </div>
+            {% endif %}
           {% endfor %}
       </div>
 
@@ -69,13 +88,17 @@
 
     chatSocket.onmessage = function(e) {
         const data = JSON.parse(e.data);
+        const md = new Date(Date.now());
+        console.log(md)
+
         // console.log(data)
 
         if (data.message) {
-            document.querySelector('#chat-messages').innerHTML += ('<div class="d-block p-2 bg-light mb-1" style="border-radius: 0.5rem;"><b>' + data.username + '</b><br>' + data.message + '</div>');
-        } else {
-            alert('The message was empty!')
-        }
+          // if (data.username === {{ request.user.username }})
+            document.querySelector('#chat-messages').innerHTML += ('<div class="d-flex justify-content-end mb-1" style="border-radius: 0.5rem;"><div class="d-block p-2 bg-light mb-1" style="border-radius: 0.5rem;"><b>' + data.username + '</b><br>' + data.message + '<p class="text-muted mb-0" style="font-size: 10px;">' + md.toLocaleTimeString() + '</p></div></div>');
+        }// else {
+        //     alert('The message was empty!')
+        // }
 
         scrollToBottom();
     };
@@ -99,11 +122,13 @@
             'room': roomName
         })
 
-        chatSocket.send(JSON.stringify({
+        if (message) {
+          chatSocket.send(JSON.stringify({
             'message': message,
             'username': userName,
             'room': roomName
-        }));
+          }));
+        }
 
         messageInputDom.value = '';
 
