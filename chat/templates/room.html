@@ -11,30 +11,30 @@
         <a href="{% url 'rooms' %}" class="btn btn-warning btn-block px-2 mb-4">Вернуться</a>
       </div>
       <h3 class="d-flex justify-content-center mb-4">{{ room.name }}</h3>
-      <div class="d-block p-2 bg-dark mb-4" id="chat-messages" style="max-height: 350px; overflow-y: scroll; border-radius: 1rem;">
+      <!-- <div class="d-block p-2 bg-dark mb-4" id="chat-messages" style="max-height: 350px; overflow-y: scroll; border-radius: 1rem;">
         {% for m in messages %}
-        {% if request.user.username == m.user.username %}
+          {% if request.user.username == m.user.username %}
           <div class="d-flex justify-content-end mb-1" style="border-radius: 0.5rem;">
-            <div class="d-block p-2 bg-light mb-1" style="border-radius: 0.5rem;">
+            <div class="d-block p-2 bg-light mb-1" id="new-message" style="border-radius: 0.5rem;">
               <b>{{ m.user.username }}</b><br>{{ m.content }}
-              <p class="text-muted mb-0">{{ m.date_added }}</p>
             </div>
+            <p class="text-muted mb-0">{{ m.date_added }}</p>
           </div>
-        {% else %}
+          {% else %}
           <div class="d-flex justify-content-start mb-1">
-            <div class="d-block p-2 bg-light mb-1" style="border-radius: 0.5rem;">
+            <div class="d-block p-2 bg-light mb-1" id="new-message" style="border-radius: 0.5rem;">
               <b>{{ m.user.username }}</b><br>{{ m.content }}
-              <p class="text-muted mb-0">{{ m.date_added }}</p>
             </div>
+            <p class="text-muted mb-0">{{ m.date_added }}</p>
           </div>
-        {% endif %}
-        {% endfor %}        
-            
-        <!-- {% for m in messages %}
-          <div class="d-block p-2 bg-light mb-3" style="border-radius: 0.5rem;">
-            <b>{{ m.user.username }}</b><br>{{ m.content }}
-          </div>
-        {% endfor %} -->
+          {% endif %}
+        {% endfor %}
+      </div> -->
+
+      <div class="d-block border border-warning p-2 bg-dark mb-4" id="chat-messages" style="max-height: 350px; overflow-y: scroll; border-radius: 1rem;">
+          {% for m in messages %}
+            <div class="d-block p-2 bg-light mb-1" style="border-radius: 0.5rem;"><b>{{ m.user.username }}</b><br>{{ m.content }}<p class="text-muted mb-0">{{ m.date_added }}</p></div>
+          {% endfor %}
       </div>
 
       <form method="post" action=".">
@@ -69,9 +69,10 @@
 
     chatSocket.onmessage = function(e) {
         const data = JSON.parse(e.data);
+        // console.log(data)
 
         if (data.message) {
-            document.querySelector('#chat-messages').innerHTML += ('<b>' + data.username + '</b>: ' + data.message + '<br>');
+            document.querySelector('#chat-messages').innerHTML += ('<div class="d-block p-2 bg-light mb-1" style="border-radius: 0.5rem;"><b>' + data.username + '</b><br>' + data.message + '</div>');
         } else {
             alert('The message was empty!')
         }
