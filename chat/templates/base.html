@@ -8,12 +8,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" href="{% static 'images/nyan_cat_0.gif' %}" sizes="32x32"/>
-        <style>
-          .messages {
-              height: 400px;
-              overflow-y: auto;
-          }
-        </style>
 
         <title>{% block title %}yummy chat{% endblock %}</title>
     </head>
@@ -26,17 +20,19 @@
                 <div class="tab-pane fade show active">
                   {% if request.user.is_authenticated %}
                   <div class="d-flex justify-content-end">
-                    <a href="{% url 'logout' %}" class="btn btn-warning btn-block px-5 mb-4">выйти</a>
+                    <a href="{% url 'logout' %}" class="btn btn-warning btn-block px-3 mb-4"><span class="glyphicon glyphicon-log-out">Выйти</span></a>
                   </div>
                   <h3 class="d-flex justify-content-center mb-4">Выберите / создайте чат</h3>
                     {% for room in rooms %}
-                      <a href="{% url 'room' room.slug %}" class="btn btn-dark mb-4 px-5">{{ room.name }}</a>
+                      <div class="d-grid gap-2">
+                        <a href="{% url 'room' room.slug %}" class="btn btn-outline-dark mb-2 px-5">{{ room.name }}</a>
+                      </div>
                     {% endfor %}
                   <form method="post" action=".">
                     {% csrf_token %}
                     <div class="d-flex form-outline justify-content-center mb-2">
                       <input type="text" name="name" class="form-control mb-4" placeholder="Название комнаты"/>
-                      <button class="btn btn-primary btn-block justify-content-center px-5 mb-4">создать</button>
+                      <button class="btn btn-primary btn-block justify-content-center px-4 mb-4">Создать</button>
                     </div>
                   </form>
                   {% else %}
