@@ -7,11 +7,19 @@
   <div class="col-12 col-md-8 col-lg-6 col-xl-5">
   <div class="tab-content bg-light p-4" style="border-radius: 1rem;">
     <div class="tab-pane fade show active">
-      <div class="d-flex justify-content-end">
+      <nav class="navbar navbar-light border border-1 border-warning bg-dark mb-1" style="border-radius: 0.5rem;">
+        <div class="container-fluid">
+          <img class="d-inline-block align-text-top" src="{% static 'images/nyan_cat_0.gif' %}" width="60" height="50">
+          <h3 class="text-light">{{ room.name }}<p class="d-flex justify-content-center mb-0" style="font-size: 10px">{{ cnt }} участников</p></h3>
+          <a href="{% url 'rooms' %}" class="btn btn-warning btn-block px-2 mb-0">Вернуться</a>
+        </div>
+      </nav>
+      <!-- <div class="d-flex justify-content-end">
         <a href="{% url 'rooms' %}" class="btn btn-warning btn-block px-2 mb-1">Вернуться</a>
-      </div>
-      <h3 class="d-flex justify-content-center mb-4">{{ room.name }}</h3>
-      <div class="d-block border border-3 border-warning p-3 bg-dark mb-4" id="chat-messages" style="max-height: 350px; overflow-y: scroll; border-radius: 1rem;">
+        <h3 class="d-flex justify-content-center mb-4">{{ room.name }}</h3>
+      </div> -->
+      <!-- <h3 class="d-flex justify-content-center mb-4">{{ room.name }}</h3> -->
+      <div class="d-block border border-2 border-warning p-3 bg-dark mb-3" id="chat-messages" style="max-height: 350px; overflow-y: scroll; border-radius: 1rem;">
           {% for m in messages %}
             {% if request.user.username == m.user.username %}
               <div class="d-flex justify-content-end mb-1" style="border-radius: 0.5rem;">
