@@ -36,10 +36,13 @@ def rooms(request):
 
 @login_required
 def room(request, slug):
-    # user = request.user.id
+    user = request.user.id
 
     room = Room.objects.get(slug=slug)
-    cnt = len(Message.objects.filter(room_id=4).order_by().values_list('user_id').distinct())
+
+    messages = Message.objects.filter(~Q(user_id=user), room=room).update(read=True)
+
     messages = Message.objects.filter(room=room)
+    cnt = len(messages.order_by().values_list('user_id').distinct())
 
     return render(request, 'room.html', {'room': room, 'messages': messages, 'cnt': cnt})

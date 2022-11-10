@@ -21,7 +21,13 @@
               <div class="d-flex justify-content-end mb-1" style="border-radius: 0.5rem;">
                 <div class="d-block p-2 bg-light mb-1" style="border-radius: 0.5rem;">
                   <b>{{ m.user.username }}</b><br>{{ m.content }} 
-                  <p class="text-muted mb-0" style="font-size: 11px;">{{ m.date_added }} <img src="{% static 'images/dve_serye_galochki.png' %}" width="15" height="10"></p>
+                  <p class="text-muted mb-0" style="font-size: 11px;">{{ m.date_added }} 
+                    {% if m.read %}
+                      <img src="{% static 'images/dve_blue_galochki.png' %}" width="14" height="17">
+                    {% else %}
+                      <img src="{% static 'images/dve_serye_galochki.png' %}" width="15" height="10">
+                    {% endif %}
+                  </p>
                 </div>
               </div>
             {% else %}
@@ -39,7 +45,7 @@
         <!-- class="d-flex form-outline justify-content-center mb-2" -->
           <div class="input-group">
             <input type="text" name="content" class="form-control" placeholder="Ваше сообщение..." id="chat-message-input" style="border-color: black;"/>
-            <button class="btn btn-dark btn-block justify-content-center px-4" id="chat-message-submit">Отправить</button>
+            <button class="btn btn-dark btn-block justify-content-center px-2" id="chat-message-submit"><img src="{% static 'images/send-icon-2.png' %}" width="32" height="27"></button>
           </div>
       </form>
     </div>
@@ -74,7 +80,6 @@
         // console.log(data)
 
         if (data.message) {
-          // if (data.username === {{ request.user.username }})
             document.querySelector('#chat-messages').innerHTML += ('<div class="d-flex justify-content-end mb-1" style="border-radius: 0.5rem;"><div class="d-block p-2 bg-light mb-1" style="border-radius: 0.5rem;"><b>' + data.username + '</b><br>' + data.message + '<p class="text-muted mb-0" style="font-size: 10px;">' + md.toLocaleTimeString() + '</p></div></div>');
         }// else {
         //     alert('The message was empty!')
