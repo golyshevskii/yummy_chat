@@ -19,7 +19,7 @@
           {% for m in messages %}
             {% if request.user.username == m.user.username %}
               <div class="d-flex justify-content-end mb-1" style="border-radius: 0.5rem;">
-                <div class="d-block p-2 bg-light mb-1" style="border-radius: 0.5rem;">
+                <div class="d-block p-2 bg-warning mb-1" style="border-radius: 0.5rem;">
                   <b>{{ m.user.username }}</b><br>{{ m.content }} 
                   <p class="text-muted mb-0" style="font-size: 11px;">{{ m.date_added }} 
                     {% if m.read %}
@@ -80,7 +80,7 @@
         // console.log(data)
 
         if (data.message) {
-            document.querySelector('#chat-messages').innerHTML += ('<div class="d-flex justify-content-end mb-1" style="border-radius: 0.5rem;"><div class="d-block p-2 bg-light mb-1" style="border-radius: 0.5rem;"><b>' + data.username + '</b><br>' + data.message + '<p class="text-muted mb-0" style="font-size: 10px;">' + md.toLocaleTimeString() + '</p></div></div>');
+            document.querySelector('#chat-messages').innerHTML += ('<div class="d-flex justify-content-end mb-1" style="border-radius: 0.5rem;"><div class="d-block p-2 bg-warning mb-1" style="border-radius: 0.5rem;"><b>' + data.username + '</b><br>' + data.message + '<p class="text-muted mb-0" style="font-size: 10px;">' + md.toLocaleTimeString() + '</p></div></div>');
         }// else {
         //     alert('The message was empty!')
         // }
