@@ -10,15 +10,11 @@
       <nav class="navbar navbar-light border border-1 border-warning bg-dark mb-1" style="border-radius: 0.5rem;">
         <div class="container-fluid">
           <img class="d-inline-block align-text-top" src="{% static 'images/nyan_cat_0.gif' %}" width="60" height="50">
-          <h3 class="text-light">{{ room.name }}<p class="d-flex justify-content-center mb-0" style="font-size: 10px">{{ cnt }} участников</p></h3>
-          <a href="{% url 'rooms' %}" class="btn btn-warning btn-block px-2 mb-0">Вернуться</a>
+          <h3 class="text-light">{{ room.name }}<p class="d-flex justify-content-center mb-0" style="font-size: 10px">участников {{ cnt }}</p></h3>
+          <a href="{% url 'rooms' %}" class="btn btn-block px-1 mb-0" style="border: none;"><img class="d-inline-block align-text-top" src="{% static 'images/logout-icon.png' %}" width="32" height="36"></a>
         </div>
       </nav>
-      <!-- <div class="d-flex justify-content-end">
-        <a href="{% url 'rooms' %}" class="btn btn-warning btn-block px-2 mb-1">Вернуться</a>
-        <h3 class="d-flex justify-content-center mb-4">{{ room.name }}</h3>
-      </div> -->
-      <!-- <h3 class="d-flex justify-content-center mb-4">{{ room.name }}</h3> -->
+
       <div class="d-block border border-2 border-warning p-3 bg-dark mb-3" id="chat-messages" style="max-height: 350px; overflow-y: scroll; border-radius: 1rem;">
           {% for m in messages %}
             {% if request.user.username == m.user.username %}

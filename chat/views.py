@@ -3,7 +3,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from .forms import SignUpForm, RoomCreationForm
-from .models import Room, Message, MessageStatus
+from .models import Room, Message
 
 
 def sign_up(request):

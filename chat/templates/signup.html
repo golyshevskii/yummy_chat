@@ -21,9 +21,10 @@
               <div class="form-outline mb-3">
                 <input type="password" name="password2" id="registerRepeatPassword" class="form-control" placeholder="повтор пароля"/>
               </div>
-
+              
+              <a href="{% url 'login' %}" class="btn btn-block px-1 mb-2"><img class="d-inline-block align-text-top" src="{% static 'images/back-icon.png' %}" width="32" height="35"></a>
               <button class="btn btn-primary btn-block mb-2">Регистрация</button>
-              <a href="{% url 'login' %}" class="btn btn-warning btn-block mb-2">Вернуться</a>
+              <!-- <a href="{% url 'login' %}" class="btn btn-warning btn-block mb-2">Назад</a> -->
 
               {% if form.errors %}
               {% for f in form %}
