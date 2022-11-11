@@ -25,8 +25,8 @@
                   </div>
                   <h3 class="d-flex justify-content-center mb-4">Выберите / создайте чат</h3>
                     {% for room in rooms %}
-                      <div class="d-grid gap-2 mb-3">
-                        <a href="{% url 'room' room.slug %}" class="btn btn-outline-dark mb-2 px-5">{{ room.name }}</a>
+                      <div class="d-grid gap-2 mb-1">
+                        <a href="{% url 'room' room.slug %}" class="btn btn-outline-dark mb-1 px-5">{{ room.name }}</a>
                       </div>
                     {% endfor %}
                   <form method="post" action=".">
